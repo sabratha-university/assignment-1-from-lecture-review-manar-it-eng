@@ -1,0 +1,56 @@
+@startuml
+package shapes {
+  class Point {
+    - x: double
+    - y: double
+    + Point()
+    + Point(x: double, y: double)
+    + getX(): double
+    + getY(): double
+    + set(x: double, y: double)
+    + move(dx: double, dy: double)
+  }
+
+  interface Movable {
+    + move(dx: double, dy: double)
+    + setPosition(x: double, y: double)
+  }
+
+  interface Adjustable {
+    + resize(factor: double)
+  }
+
+  abstract class Shape {
+    - position: Point
+    - name: String
+    + Shape(name: String, x: double, y: double)
+    + getPosition(): Point
+    + area(): double
+    + perimeter(): double
+    + draw()
+    + move(dx: double, dy: double)
+    + setPosition(x: double, y: double)
+    + resize(factor: double)
+  }
+
+  class Circle {
+    - radius: double
+    + Circle(name: String, x: double, y: double, radius: double)
+    + getRadius(): double
+    + setRadius(r: double)
+    + area(): double
+    + perimeter(): double
+    + draw()
+    + move(dx: double, dy: double)
+    + setPosition(x: double, y: double)
+    + resize(factor: double)
+  }
+
+  Point <-- "1" Shape : composition
+  Shape <|-- Circle
+  Circle ..|> Movable
+  Circle ..|> Adjustable
+  Shape ..|> Movable
+  Shape ..|> Adjustable
+}
+@enduml
