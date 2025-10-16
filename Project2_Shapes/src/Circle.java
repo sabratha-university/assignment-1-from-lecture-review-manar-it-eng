@@ -1,23 +1,31 @@
-public class Circle extends Shape implements Movable, Adjustable {
-    private double radius;
-    public Circle(String name, double radius) {
-        super(name);
+
+
+public class Circle extends Shape {
+    private double radius;  // خاصية إضافية
+
+    public Circle(Point position, double radius) {
+        super(position);
         this.radius = radius;
     }
 
-    @Override
-    public void draw() {
-        System.out.println("Drawing a circle with radius " + radius);
-    }
-
-    @Override
-    public void move() {
-        System.out.println(name + " moved to new position.");
-    }
-
+    // إعادة تعريف لـ Adjustable
     @Override
     public void resize(double factor) {
         radius *= factor;
-        System.out.println(name + " resized to new radius: " + radius);
     }
+
+    @Override
+    public double getSize() {
+        return radius;
+    }
+
+    // إعادة تعريف للرسم (تعدد شكلي)
+    @Override
+    public void draw() {
+        System.out.println("Drawing a circle at " + position + " with radius " + radius);
+    }
+
+    // Getter و Setter للشعاع
+    public double getRadius() { return radius; }
+    public void setRadius(double radius) { this.radius = radius; }
 }

@@ -1,3 +1,6 @@
+
+
 public interface Movable {
-    void move();
+    void move(double dx, double dy);  // تحريك النقطة
+    Point getPosition();              // الحصول على الموقع
 }
